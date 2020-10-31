@@ -86,8 +86,7 @@ input[type=email]:focus, input[type=password]:focus{
 
 <div class="bg-img">
   <form action="" method="post" class="container">
-    <h1>REGISTER </h1>
-    <p>Please fill in this form to create an account.</p>
+    <h1>LOGIN </h1>
     <hr>
     <input type="email" placeholder="Enter Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="please enter valid email"  required>
     <input type="password" name="p" placeholder="Password"required>
