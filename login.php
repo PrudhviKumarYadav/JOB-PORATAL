@@ -10,7 +10,7 @@ if($check->num_rows !=0){
 $resultSet = $mysqli->query("SELECT * FROM REGISTRIES WHERE EMAIL='$email' AND PASSWORD='$p' LIMIT 1");
 if($resultSet->num_rows !=0){
 $_SESSION["email"]=$email;
-header('location:home.php');
+header('location:main.php');
 
 }else{
 $error="Entered password is incorrect";
