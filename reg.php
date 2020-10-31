@@ -6,7 +6,7 @@ $p2=$_POST['p2'];
 if($p2!=$p1){
 $error="Paswords do not match!";
 }else{
-$link = mysqli_connect("localhost", "root", "Danger@143", "register");
+$link = mysqli_connect("localhost", "root", "Danger@143", "job");
 
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -16,7 +16,7 @@ $email = mysqli_real_escape_string($link, $_POST['email']);
 $pass = mysqli_real_escape_string($link, $_POST['p1']);
 
 
-$sql = "INSERT INTO TEST(EMAIL, PASSWORD) VALUES ('$email', '$pass')";
+$sql = "INSERT INTO TEST REGISRIES(EMAIL, PASSWORD) VALUES ('$email', '$pass')";
 if(mysqli_query($link, $sql)){
     header('location:login.php');
 session_destroy();
