@@ -7,7 +7,7 @@ $email=$mysqli->real_escape_string($_POST['email']);
 $pass=$mysqli->real_escape_string($_POST['p']);
 $check=$mysqli->query("SELECT * FROM REGISTRIES WHERE EMAIL='$email' LIMIT 1");
 if($check->num_rows !=0){
-$resultSet = $mysqli->query("SELECT * FROM REGISTRIES WHERE EMAIL='$email' AND PASSWORD='$pass' LIMIT 1");
+$resultSet = $mysqli->query("SELECT * FROM REGISTRIES WHERE EMAIL='$email' AND PASSWORD='$p' LIMIT 1");
 if($resultSet->num_rows !=0){
 $_SESSION["email"]=$email;
 header('location:home.php');
