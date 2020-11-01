@@ -26,7 +26,7 @@
 <script src="main1.js" language="Javascript" type="text/javascript"></script>
 <body>
 <div class="bg-img">
-<form method="POST">
+<form method="POST" action="Result.php">
      <div id="dynamicInput">
           skill 1<br><select  name="skills[]">
     <optgroup label="IT skills">
