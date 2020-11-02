@@ -1,30 +1,42 @@
 <?php
-$error=NULL;
 if(isset($_POST['submit'])){
+$email=$_POST['email']
 $p1=$_POST['p1'];
 $p2=$_POST['p2'];
-if($p2!=$p1){
-$error="Paswords do not match!";
+if($p1!=$p2){
+    echo"the password you entered do not match to the password";
 }else{
+if (!empty($email) || !empty($p2)) {
 $link = mysqli_connect("localhost", "root", "Danger@143", "register");
-
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
-
-$email = mysqli_real_escape_string($link, $_POST['email']);
-$pass = mysqli_real_escape_string($link, $_POST['p1']);
-
-
-$sql = "INSERT INTO REGISTRIES(EMAIL, PASSWORD) VALUES ('$email', '$pass')";
-if(mysqli_query($link, $sql)){
-    header('location:login.php');
-session_destroy();
-} else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}
-
-mysqli_close($link);
+if (mysqli_connect_error()) {
+     die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
+    } else {
+     $SELECT = "SELECT EMAIL from REGISTRIES WHERE email = ? Limit 1";
+     $INSERT = "INSERT Into register(email, password) values(?, ?)";
+     $s = $conn->prepare($SELECT);
+     $stmt->bind_param("s", $email);
+     $stmt->execute();
+     $stmt->bind_result($email);
+     $stmt->store_result();
+     $stmt->store_result();
+     $stmt->fetch();
+     $rnum = $stmt->num_rows;
+     if ($rnum==0) {
+     $stmt->close();
+     $stmt = $conn->prepare($INSERT);
+     $stmt->bind_param("ss", $email, $password);
+     $stmt->execute();
+     header('Location: login.php');
+      exit();
+     } else {
+      echo "Someone already register using this email";
+     }
+     $stmt->close();
+     $conn->close();
+    }
+} else {
+ echo "All field are required";
+ die();
 }
 }
 ?>
