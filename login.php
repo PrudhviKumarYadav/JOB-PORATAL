@@ -1,23 +1,20 @@
 <?php
 session_start();
-$error=NULL;
 if(isset($_POST['submit'])){
 $link = mysqli_connect("localhost", "root", "Danger@143", "register");
-$email=$mysqli->real_escape_string($_POST['email']);
-$pass=$mysqli->real_escape_string($_POST['p']);
-$check=$mysqli->query("SELECT * FROM REGISTRIES WHERE EMAIL='$email' LIMIT 1");
-if($check->num_rows !=0){
-$resultSet = $mysqli->query("SELECT * FROM REGISTRIES WHERE EMAIL='$email' AND PASSWORD='$p' LIMIT 1");
-if($resultSet->num_rows !=0){
-$_SESSION["email"]=$email;
-header('location:main.php');
-
-}else{
-$error="Entered password is incorrect";
+$email=$mysqli->real_escape_string($link,$_POST['email']);
+$pass=$mysqli->real_escape_string($link,$_POST['p']);
+$check="SELECT * FROM REGISTRIES WHERE EMAIL='$email' AND  PASSWORD='$p' ";
+$result = mysqli_query($link,$check);
+$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+$active = $row['active'];
+$count = mysqli_num_rows($result);
+if($count == 1) {
+  header("location: main.php");
+}else {
+  $error = "Your Login Name or Password is invalid";
 }
 }
-}
-
 ?>
 <html>
 <head>
