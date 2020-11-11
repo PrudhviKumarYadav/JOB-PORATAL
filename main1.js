@@ -2,7 +2,7 @@ let counter = 1;
 let limit = 10;
 function addInput(divName){
      if (counter >= limit)  {
-          alert("You have reached the limit of adding " + counter + " ingredients");
+          alert("You have reached the limit of adding " + counter + " skills");
      }
      else {
           let newdiv = document.createElement('div');
